@@ -2,9 +2,7 @@
 #define _OPCODES_H_
 
 #include <memory>
-
-#include "cpu.hpp"
-#include "types.hpp"
+#include "mainboard.hpp"
 
 namespace opcodes
 {
