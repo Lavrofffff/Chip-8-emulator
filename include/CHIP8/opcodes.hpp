@@ -3,6 +3,7 @@
 
 #include <memory>
 
+#include "cpu.hpp"
 #include "types.hpp"
 
 namespace opcodes
@@ -22,7 +23,7 @@ namespace opcodes
 class Base
 {
 public:
-   Base(opcode_t op):code(op)
+   Base(domain::CPU& cont):context(cont)
    {
    }
    virtual ~Base()
@@ -30,13 +31,19 @@ public:
    }
    virtual void execute() = 0;
 protected:
-   opcode_t code;
+   CPU& context;
 };
 
 // 0NNN 	Calls RCA 1802 program at address NNN.
 class ProcCall : public Base
 {
 public:
+   ProcCall(domain::CPU& context):Base(context)
+   {
+   }
+   virtual ~ProcCall() 
+   {
+   }
    void execute() { }
 };
 
@@ -44,6 +51,12 @@ public:
 class ClearScreen : public Base
 {
 public:
+   ClearScreen(domain::CPU& context):Base(context)
+   {
+   }
+   virtual ~ClearScreen()
+   {
+   }
    void execute() { }
 };
 
@@ -51,6 +64,12 @@ public:
 class ReturnFromSub : public Base
 {
 public:
+   ReturnFromSub(domain::CPU& context):Base(context)
+   {
+   }
+   virtual ~ClearScreen()
+   {
+   }
    void execute() { }
 };
 
@@ -58,6 +77,12 @@ public:
 class Jump : public Base
 {
 public:
+   Jump(domain::CPU& context):Base(context)
+   {
+   }
+   virtual ~Jump()
+   {
+   }
    void execute() { }
 };
 
@@ -65,6 +90,12 @@ public:
 class CallSub : public Base
 {
 public:
+   CallSub(domain::CPU& context):Base(context)
+   {
+   }
+   virtual ~CallSub()
+   {
+   }
    void execute() { }
 };
 
@@ -72,6 +103,12 @@ public:
 class SkipNextWithNN : public Base
 {
 public:
+   SkipNextWithNN(domain::CPU& context):Base(context)
+   {
+   }
+   virtual ~SkipNextWithNN()
+   {
+   }
    void execute() { }
 };
 
@@ -79,6 +116,12 @@ public:
 class SkipNextWithoutNN : public Base
 {
 public:
+   SkipNextWithoutNN(domain::CPU& context):Base(context)
+   {
+   }
+   virtual ~SkipNextWithoutNN()
+   {
+   }
    void execute() { }
 };
 
@@ -86,6 +129,12 @@ public:
 class SkipNextWithVY : public Base
 {
 public:
+   SkipNextWithVY(domain::CPU& context):Base(context)
+   {
+   }
+   virtual ~SkipNextWithVY()
+   {
+   }
    void execute() { }
 };
 
@@ -93,12 +142,24 @@ public:
 class SetVXToNN : public Base
 {
 public:
+   SetVXToNN(domain::CPU& context):Base(context)
+   {
+   }
+   virtual ~SetVXToNN()
+   {
+   }
    void execute() { }
 };
 
 // 7XNN 	Adds NN to VX.
 class AddNNToVX : public Base
 {
+   AddNNToVX(domain::CPU& context):Base(context)
+   {
+   }
+   virtual ~AddVXToNN()
+   {
+   }
    void execute() { }
 };
 
@@ -106,6 +167,12 @@ class AddNNToVX : public Base
 class SetVXToVY : public Base
 {
 public:
+   SetVXToVY(domain::CPU& context):Base(context)
+   {
+   }
+   virtual ~SetVXToVY()
+   {
+   }
    void execute() { }
 };
 
@@ -113,6 +180,12 @@ public:
 class SetVXToVXOrVY : public Base
 {
 public:
+   SetVXToVXOrVY(domain::CPU& context):Base(context)
+   {
+   }
+   virtual ~SetVXToVXOrVY()
+   {
+   }
    void execute() { }
 };
 
@@ -120,6 +193,12 @@ public:
 class SetVXToVXAndVY : public Base
 {
 public:
+   SetVXToVXAndVY(domain::CPU& context):Base(context)
+   {
+   }
+   virtual ~SetVXToVXAndVY()
+   {
+   }
    void execute() { }
 };
 
@@ -127,6 +206,12 @@ public:
 class SetVXToVXXorVY : public Base
 {
 public:
+   SetVXToVXXorVY(domain::CPU& context):Base(context)
+   {
+   }
+   virtual ~SetVXToVXXorVY()
+   {
+   }
    void execute() { }
 };
 
@@ -134,6 +219,12 @@ public:
 class AddVYToVX : public Base
 {
 public:
+   AddVYToVX(domain::CPU& context):Base(context)
+   {
+   }
+   virtual ~AddVYToVX()
+   {
+   }
    void execute() { }
 };
 
@@ -141,6 +232,12 @@ public:
 class SubVYFromVX : public Base
 {
 public:
+   SubVYFromVX(domain::CPU& context):Base(context)
+   {
+   }
+   virtual ~SubVYFromVX()
+   {
+   }
    void execute() { }
 };
 
@@ -148,6 +245,12 @@ public:
 class ShiftVXRightOne : public Base
 {
 public:
+   ShiftVXRightOne(domain::CPU& context):Base(context)
+   {
+   }
+   virtual ~ShiftVXRightOne()
+   {
+   }
    void execute() { }
 };
 
@@ -155,6 +258,12 @@ public:
 class SetVXToVYSubVX : public Base
 {
 public:
+   SetVXToVYSubVX(domain::CPU& context):Base(context)
+   {
+   }
+   virtual ~SetVXToVYSubVX()
+   {
+   }
    void execute() { }
 };
 
@@ -162,6 +271,12 @@ public:
 class ShiftVXLeftOne : public Base
 {
 public:
+   ShiftVXLeftOne(domain::CPU& context):Base(context)
+   {
+   }
+   virtual ~ShiftVXLeftOne()
+   {
+   }
    void execute() { }
 };
 
@@ -169,6 +284,12 @@ public:
 class SkipNextWithoutVY : public Base
 {
 public:
+   SkipNextWithoutVY(domain::CPU& context):Base(context)
+   {
+   }
+   virtual ~SkipNextWithoutVY()
+   {
+   }
    void execute() { }
 };
 
@@ -176,6 +297,12 @@ public:
 class SetIToNNN : public Base
 {
 public:
+   SetIToNNN(domain::CPU& context):Base(context)
+   {
+   }
+   virtual ~SetIToNNN()
+   {
+   }
    void execute() { }
 };
 
@@ -183,6 +310,12 @@ public:
 class JumpToNNPlusV0 : public Base
 {
 public:
+   JumpToNNPlusV0(domain::CPU& context):Base(context)
+   {
+   }
+   virtual ~JumpToNNPlusV0()
+   {
+   }
    void execute() { }
 };
 
@@ -190,6 +323,12 @@ public:
 class SetVXToRandomAndNN : public Base
 {
 public:
+   SetVXToRandomAndNN(domain::CPU& context):Base(context)
+   {
+   }
+   virtual ~JumpToNNPlusV0()
+   {
+   }
    void execute() { }
 };
 
@@ -197,7 +336,13 @@ public:
 class DrawVXVY : public Base
 {
 public:
-   void execute() { }
+   DrawVXVY(domain::CPU& context):Base(context)
+   {
+   }
+   virtual ~DrawVXVY()
+   {
+   }
+   virtual void execute() { }
 };
 
 // EX9E 	Skips the next instruction if the key stored in VX is pressed.
